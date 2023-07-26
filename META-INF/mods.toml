@@ -1,0 +1,35 @@
+modLoader="javafml"
+loaderVersion="[43,)"
+
+license="All Rights Reserved"
+issueTrackerURL=""
+showAsResourcePack=false
+
+[[mods]]
+  modId="soulcraft"
+  version="1.0.0.0"
+  displayName="Glitchtale Souls Mod"
+  updateJSONURL=""
+  displayURL=""
+  logoFile=""
+  credits="I'd like to thank my mother and father."
+  authors="Zebralear"
+  description='''
+  Stuff
+  '''
+  displayTest="MATCH_VERSION"
+
+
+[[dependencies.SoulCraft]]
+  modId="forge"
+  mandatory=true
+  versionRange="[43,)"
+  ordering="NONE"
+  side="BOTH"
+
+[[dependencies.SoulCraft]]
+  modId="minecraft"
+  mandatory=true
+  versionRange="[1.19.2]"
+  ordering="NONE"
+  side="BOTH"
