@@ -1,31 +1,24 @@
 package zebralear.soulcraft.SoulStorage;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 import zebralear.soulcraft.networking.UnsetterC2S;
 import zebralear.soulcraft.util.ModMessages;
-import net.minecraft.core.Direction;
 
 
-public class SoulHas implements ISoulHas, ICapabilityProvider, INBTSerializable<CompoundTag> {
+public class SoulHas {
 private int hasSoul = 0;
 private final int maxSoul = 1;
 private final int minSoul = 0;
 
-//public int getSoulHaver() {
-//	return hasSoul;
-//	}
+public int getSoulHaver() {
+	return hasSoul;
+	}
 //this is what is being run in screenshot one, but does nothing.
 public void addSoul(int addtosoul) {
 	Minecraft.getInstance().player.sendSystemMessage(Component.literal("addSoulStart"));
@@ -66,25 +59,5 @@ private SoulHas createSoulHas() {
 	}
 	return this.soulHas;
 }
-
-@Override
-public CompoundTag serializeNBT() {
-	CompoundTag nbt = new CompoundTag();
-	createSoulHas().saveNBTData(nbt);
-	return nbt;
-}
-
-@Override
-public void deserializeNBT(CompoundTag nbt) {
-	createSoulHas().loadNBTData(nbt);
-}
-@NonNull
-@Override
-public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-	if(cap == Soul_Has) {
-		return optional.cast();
-	}
-	return LazyOptional.empty();
-	}
 }
 

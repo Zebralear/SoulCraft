@@ -9,7 +9,6 @@ import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import zebralear.soulcraft.SoulStorage.ISoulHas;
 import zebralear.soulcraft.SoulStorage.SoulHasProvider;
 import zebralear.soulcraft.toplevel.SoulCraftMod;
 
@@ -34,6 +33,6 @@ public void onPlayerCloned(PlayerEvent.Clone event) {
 }
 @SubscribeEvent
 public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
-	event.register(ISoulHas.class);
+	event.register(SoulHasProvider.class);
 }
 }
