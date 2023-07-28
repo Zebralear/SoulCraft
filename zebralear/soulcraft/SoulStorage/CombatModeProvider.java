@@ -12,23 +12,23 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.common.util.LazyOptional;
 
-public class SoulHasProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
-	public static Capability<SoulHas> Soul_Has = CapabilityManager.get(new CapabilityToken<SoulHas>() {});
+public class CombatModeProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
+	public static Capability<CombatMode> Combat_Mode = CapabilityManager.get(new CapabilityToken<CombatMode>() {});
 
-	private SoulHas soulHas = null;
-	private final LazyOptional<SoulHas> optional = LazyOptional.of(this::createSoulHas);
+	private CombatMode CombatMode = null;
+	private final LazyOptional<CombatMode> optional = LazyOptional.of(this::createCombatMode);
 	
-	private <T> SoulHas createSoulHas() {
-		if(this.soulHas == null) {
-		this.soulHas = new SoulHas();
+	private <T> CombatMode createCombatMode() {
+		if(this.CombatMode == null) {
+		this.CombatMode = new CombatMode();
 		}
-		return this.soulHas;	
+		return this.CombatMode;	
 	}
 	
 	
 	@Override
 	public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-		if(cap == Soul_Has) {
+		if(cap == Combat_Mode) {
 			return optional.cast();
 		}
 		return LazyOptional.empty();
@@ -37,13 +37,13 @@ public class SoulHasProvider implements ICapabilityProvider, INBTSerializable<Co
 	@Override
 	public CompoundTag serializeNBT() {
 		CompoundTag nbt = new CompoundTag();
-		createSoulHas().saveNBTData(nbt);
+		createCombatMode().saveNBTData(nbt);
 		return nbt;
 	}
 
 	@Override
 	public void deserializeNBT(CompoundTag nbt) {
-		createSoulHas().loadNBTData(nbt);
+		createCombatMode().loadNBTData(nbt);
 		
 	}
 

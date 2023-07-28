@@ -8,7 +8,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
-import zebralear.soulcraft.SoulStorage.SoulHas;
+import zebralear.soulcraft.SoulStorage.CombatModeProvider;
+import zebralear.soulcraft.SoulStorage.SoulHasProvider;
+import zebralear.soulcraft.SoulStorage.SoulTypeProvider;
 
 public class UnsetterC2S {
  public UnsetterC2S() {
@@ -27,15 +29,28 @@ public class UnsetterC2S {
 		 ServerPlayer player = context.getSender();
 		 ServerLevel level = player.getLevel();
 
-		SoulHas soulHas = new SoulHas();
-		String hasSoul = soulHas.toString();
-		
-		if(hasSoul.equals("true")) {
-			Minecraft.getInstance().player.sendSystemMessage(Component.literal("Fuck"));
-
-			}
-		
-		});
-	 return true;
+		 player.getCapability(SoulHasProvider.Soul_Has).ifPresent(soulHas -> {
+			 var SoulCheck = soulHas.getSoulHaver();
+			 player.getCapability(SoulTypeProvider.Soul_Type).ifPresent(soulType -> { 
+				 var TypeCheck = soulType.getSoulType();
+				 player.getCapability(CombatModeProvider.Combat_Mode).ifPresent(combatMode -> { 
+					 var CombatCheck = combatMode.getCombatMode(); {
+					 }
+				 	if(SoulCheck != 0) {
+				 		soulHas.removeSoul(1);
+				 		if(TypeCheck != 0) {
+				 		soulType.deleteType(0);
+				 			if(CombatCheck == 1) {
+				 				combatMode.setModeOff(1);
+				 			}
+				 		}
+				 		Minecraft.getInstance().player.sendSystemMessage(Component.literal("Soul Successfully Removed!"));
+				 	} else {
+				 		Minecraft.getInstance().player.sendSystemMessage(Component.literal("No Soul Detected!"));
+			 }});
+			 });
+		 });
+	});
+	return true;
  }
 }

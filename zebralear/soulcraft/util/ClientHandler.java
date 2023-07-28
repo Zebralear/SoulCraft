@@ -8,8 +8,7 @@ import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-//import zebralear.soulcraft.SoulStorage.SoulHasProvider;
-import zebralear.soulcraft.networking.UndyingSoulUsedC2S;
+import zebralear.soulcraft.networking.CombatKeyC2S;
 import zebralear.soulcraft.toplevel.SoulCraftMod;
 
 public class ClientHandler {
@@ -20,9 +19,8 @@ public class ClientHandler {
 		public static void onKeyInput(InputEvent.Key event)
 		{
 			if(KeyBindings.Combat_Key.consumeClick()) {
-				Minecraft.getInstance().player.sendSystemMessage(Component.literal("Your SOUL feels empty, perhaps there is a way to fill it..."));
 			 //  try {
-				ModMessages.sendToServer(new UndyingSoulUsedC2S());
+				ModMessages.sendToServer(new CombatKeyC2S());
 			//   } catch (NullPointerException npe) {}
 			   //catch NPEs (Not needed, left in for use later if more crashes occur
 			}

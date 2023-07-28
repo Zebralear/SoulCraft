@@ -13,7 +13,8 @@ public class SoulCraftMod {
 
 	public SoulCraftMod() {
 		  IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-	ModItems.register(modEventBus);	  
+	ModItems.register(modEventBus);
+	
 	modEventBus.addListener(this::commonSettup);
 	};
 	

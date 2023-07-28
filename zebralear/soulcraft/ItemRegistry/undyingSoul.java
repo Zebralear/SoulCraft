@@ -1,8 +1,6 @@
 package zebralear.soulcraft.ItemRegistry;
 
 import net.minecraft.world.item.Item;
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;

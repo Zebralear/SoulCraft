@@ -11,11 +11,11 @@ import net.minecraftforge.network.NetworkEvent;
 import zebralear.soulcraft.SoulStorage.SoulHasProvider;
 import zebralear.soulcraft.SoulStorage.SoulTypeProvider;
 
-public class UndyingSoulUsedC2S {
- public UndyingSoulUsedC2S() {
+public class StrangeC2S {
+ public StrangeC2S() {
  	 }
  
- public UndyingSoulUsedC2S(FriendlyByteBuf buf) {
+ public StrangeC2S(FriendlyByteBuf buf) {
 	 }
  
  public void toBytes(FriendlyByteBuf buf) {
@@ -33,8 +33,8 @@ public class UndyingSoulUsedC2S {
 				 var TypeCheck = soulType.getSoulType();
 			 if(SoulCheck != 1) {
 				 soulHas.addSoul(1);
-				 soulType.setType(1);
-				 Minecraft.getInstance().player.sendSystemMessage(Component.literal("The Wind Howls around you. You are now ready for combat."));
+				 soulType.setType(99);
+				 Minecraft.getInstance().player.sendSystemMessage(Component.literal("You Summon spectral hands from beyond this realm. The power of many lost experiments flows through you, assuring that you are ready for combat."));
 			 } else {
 				 Minecraft.getInstance().player.sendSystemMessage(Component.literal("Your Soul is already Full! Press USERKEYHERE to enter combat mode!"));
 			 }

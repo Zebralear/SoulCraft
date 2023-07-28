@@ -11,11 +11,11 @@ import net.minecraftforge.network.NetworkEvent;
 import zebralear.soulcraft.SoulStorage.SoulHasProvider;
 import zebralear.soulcraft.SoulStorage.SoulTypeProvider;
 
-public class UndyingSoulUsedC2S {
- public UndyingSoulUsedC2S() {
+public class ChildC2S {
+ public ChildC2S() {
  	 }
  
- public UndyingSoulUsedC2S(FriendlyByteBuf buf) {
+ public ChildC2S(FriendlyByteBuf buf) {
 	 }
  
  public void toBytes(FriendlyByteBuf buf) {
@@ -33,8 +33,8 @@ public class UndyingSoulUsedC2S {
 				 var TypeCheck = soulType.getSoulType();
 			 if(SoulCheck != 1) {
 				 soulHas.addSoul(1);
-				 soulType.setType(1);
-				 Minecraft.getInstance().player.sendSystemMessage(Component.literal("The Wind Howls around you. You are now ready for combat."));
+				 soulType.setType(9);
+				 Minecraft.getInstance().player.sendSystemMessage(Component.literal("Despite all you have lost, you are still capable of combat"));
 			 } else {
 				 Minecraft.getInstance().player.sendSystemMessage(Component.literal("Your Soul is already Full! Press USERKEYHERE to enter combat mode!"));
 			 }
