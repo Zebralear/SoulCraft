@@ -4,7 +4,7 @@ import net.minecraft.nbt.CompoundTag;
 
 public class SpecialAttackCharge {
 private int chargePercent = 0;
-private final int MaxCharge = 1;
+private final int MaxCharge = 100;
 private final int MinCharge =  0;
 
 public int getChargePercent() {

@@ -11,6 +11,8 @@ import net.minecraftforge.network.NetworkEvent;
 import zebralear.soulcraft.SoulStorage.CombatModeProvider;
 import zebralear.soulcraft.SoulStorage.SoulHasProvider;
 import zebralear.soulcraft.SoulStorage.SoulTypeProvider;
+import zebralear.soulcraft.SoulStorage.SpecialAttackCharge;
+import zebralear.soulcraft.SoulStorage.SpecialAttackChargeProvider;
 
 public class CombatKeyC2S {
 	
@@ -33,6 +35,9 @@ public class CombatKeyC2S {
 			 
 		 player.getCapability(SoulTypeProvider.Soul_Type).ifPresent(soulType -> {
 		 player.getCapability(CombatModeProvider.Combat_Mode).ifPresent(combatMode -> {
+			 player.getCapability(SpecialAttackChargeProvider.Special_Attack_Charge).ifPresent(specialCharge -> {
+				 
+			var ChargeCheck = specialCharge.getChargePercent();
 			var SoulCheck = soulHas.getSoulHaver();
 			var CombatCheck = combatMode.getCombatMode();
 			var TypeCheck = soulType.getSoulType();
@@ -121,12 +126,15 @@ public class CombatKeyC2S {
 					case 1:
 						 Minecraft.getInstance().player.sendSystemMessage(Component.literal("You lower your spears."));
 						 combatMode.setModeOff(1);
+						 specialCharge.chargeDecrease(ChargeCheck);
 						 break;
 					case 2:
 						 Minecraft.getInstance().player.sendSystemMessage(Component.literal("What a delicious meal~"));
 						 combatMode.setModeOff(1);
+						 specialCharge.chargeDecrease(ChargeCheck);
 						 break;
 					case 3:
+						// sans is special and doesn't loose charge after exiting combat mode, allowing players to get that special feeling of power starting off with his special attack
 						 Minecraft.getInstance().player.sendSystemMessage(Component.literal("That'll teach 'em"));
 						 combatMode.setModeOff(1);
 						 break;
@@ -134,63 +142,78 @@ public class CombatKeyC2S {
 						//maybe use some math.rand here to make the occasional spamton reference
 						 Minecraft.getInstance().player.sendSystemMessage(Component.literal("And that concludes a wonderful episode!"));
 						 combatMode.setModeOff(1);
+						 specialCharge.chargeDecrease(ChargeCheck);
 						 break;
 					case 5:
 						 Minecraft.getInstance().player.sendSystemMessage(Component.literal("Time to dust off and make some pie!"));
 						 combatMode.setModeOff(1);
+						 specialCharge.chargeDecrease(ChargeCheck);
 						 break;
 					case 6:
 						 Minecraft.getInstance().player.sendSystemMessage(Component.literal("Now they will surely recognize you!"));
 						 combatMode.setModeOff(1);
+						 specialCharge.chargeDecrease(ChargeCheck);
 						 break;
 					case 7:
 						 Minecraft.getInstance().player.sendSystemMessage(Component.literal("It is done."));
 						 combatMode.setModeOff(1);
+						 specialCharge.chargeDecrease(ChargeCheck);
 						 break;
 					case 8:
 					 	Minecraft.getInstance().player.sendSystemMessage(Component.literal("Oh well..."));
 					 	combatMode.setModeOff(1);
+					 	specialCharge.chargeDecrease(ChargeCheck);
 					 	break;
 					case 9:
 						 Minecraft.getInstance().player.sendSystemMessage(Component.literal("That was fun, wasn't it..."));
 						 combatMode.setModeOff(1);
+						 specialCharge.chargeDecrease(ChargeCheck);
 						 break;
 					case 10:
 						//make that italic later
 						 Minecraft.getInstance().player.sendSystemMessage(Component.literal("Maniacal laughter"));
 						 combatMode.setModeOff(1);
+						 specialCharge.chargeDecrease(ChargeCheck);
 						 break;
 					case 11:
 						 Minecraft.getInstance().player.sendSystemMessage(Component.literal("Determination triumphs, as always"));
 						 combatMode.setModeOff(1);
+						 specialCharge.chargeDecrease(ChargeCheck);
 						 break;
 					case 12:
 						 Minecraft.getInstance().player.sendSystemMessage(Component.literal("Bravery saw you through it all."));
 						 combatMode.setModeOff(1);
+						 specialCharge.chargeDecrease(ChargeCheck);
 						 break;
 					case 13:
 						 Minecraft.getInstance().player.sendSystemMessage(Component.literal("What needed to be done has been done."));
 						 combatMode.setModeOff(1);
+						 specialCharge.chargeDecrease(ChargeCheck);
 						 break;
 					case 14:
 						 Minecraft.getInstance().player.sendSystemMessage(Component.literal("Justice delievered!"));
 						 combatMode.setModeOff(1);
+						 specialCharge.chargeDecrease(ChargeCheck);
 						 break;
 					case 15:
 						 Minecraft.getInstance().player.sendSystemMessage(Component.literal("Kindness has once again prevailed."));
 						 combatMode.setModeOff(1);
+						 specialCharge.chargeDecrease(ChargeCheck);
 						 break;
 					case 16:
 						 Minecraft.getInstance().player.sendSystemMessage(Component.literal("That wasn't so tough!"));
 						 combatMode.setModeOff(1);
+						 specialCharge.chargeDecrease(ChargeCheck);
 						 break;
 					case 17:
 						 Minecraft.getInstance().player.sendSystemMessage(Component.literal("Perseverance brought you through."));
 						 combatMode.setModeOff(1);
+						 specialCharge.chargeDecrease(ChargeCheck);
 						 break;
 					case 99:
 						 Minecraft.getInstance().player.sendSystemMessage(Component.literal("Science Triumphs again!"));
 						 combatMode.setModeOff(1);
+						 specialCharge.chargeDecrease(ChargeCheck);
 						 break;
 
 
@@ -202,6 +225,7 @@ public class CombatKeyC2S {
 		 });
 		});
 		 });
+	 });
 	 });
 	 return true;
  }

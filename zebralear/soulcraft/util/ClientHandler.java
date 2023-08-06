@@ -1,13 +1,13 @@
 package zebralear.soulcraft.util;
 
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import zebralear.soulcraft.client.SansHudOverlay;
 import zebralear.soulcraft.networking.CombatKeyC2S;
 import zebralear.soulcraft.toplevel.SoulCraftMod;
 
@@ -32,6 +32,12 @@ public class ClientHandler {
 		@SubscribeEvent
 		public static void onKeyRegister(RegisterKeyMappingsEvent event) {
 			event.register(KeyBindings.Combat_Key);
+			event.register(KeyBindings.SpecialAttackKey);
 			}
+	@SubscribeEvent
+	public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
+		event.registerAbove(null, "sanshudoverlay", SansHudOverlay.HUD_SANS);
+			
+		}
 	}
 }
